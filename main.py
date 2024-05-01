@@ -88,7 +88,7 @@ class Auction:
     def register(self, cus):
         self.customers[cus.id] = cus
         self.security_label.add_reader(self.name, cus.id)
-        # print(">>Logic<< Data Declassification")
+        print(">>Logic<< Data Declassification??")
         # Declassify?
         print(f">>Auction<< Customer {cus.id} registered in {self.name}.")
 
