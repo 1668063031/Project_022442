@@ -25,7 +25,8 @@ class Auction_House:
     def switch_user_status(self, name, label):
         # print(label.owner,label.readers)
         i = self.da.change_status(self.principal.name, name.principal.name, label)
-        print(f">>AUC<< Customer {name.principal.name} status have been changed to {i}")
+        print(
+            f">>AUC<< Customer {name.principal.name} status have been changed to {i} for {self.principal.name}")
         return i
 
     def make_reference(self, name, label):
@@ -49,8 +50,8 @@ class Auction_House:
         label = label.relabelling(label, self, self)
         label.add_reader(self.principal.name, self.da.principal.name)
         if self.checkTrusted(ref.content.org, label):
-            if not self.getUserStatus(name).content:
-                self.switch_user_status(self, name)
+            if not self.getUserStatus(name):
+                self.switch_user_status(name, label)
                 return True
             print(f">>AUC<< Customer {name} already high level")
             return False

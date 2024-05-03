@@ -27,3 +27,4 @@ if __name__ == '__main__':
     bob.register(bh, label)
     test(label)
     bob.commitRef(bh,label)
+    test(label)

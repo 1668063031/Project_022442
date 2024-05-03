@@ -33,5 +33,5 @@ class Label:
         self.owner = owner.principal.name
         read = [readers.principal.name]
         self.readers = set(read)
-        print(f">>Label<< Reset label, o {owner.principal.name}, r {set(read)}")
+        # print(f">>Label<< Reset label, o {owner.principal.name}, r {set(read)}")
         return label

@@ -43,7 +43,7 @@ class Customer:
         name = auc.principal.name
         if label.can_read(name):
             label.add_reader(label.owner, self.principal.name)
-            b = auc.check_reference(name, label, self.ref)
+            b = auc.check_reference(self, label, self.ref)
             return b
         else:
             raise Exception(f"Principal {name} can not read label: {label}")
