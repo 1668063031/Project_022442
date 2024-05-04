@@ -1,5 +1,6 @@
 from DataAgent import DataAgent
 from DataPack import Principal, Reference, DataPack
+from Label import Label
 
 
 class Auction_House:
@@ -9,7 +10,9 @@ class Auction_House:
         self.da = DataAgent("da")
 
     def register(self, customer, label):
-        label = label.relabelling(label, self, self)
+        re = Label(self, customer)
+        if (label.owner and label.readers) != (re.owner and re.readers):
+            label = label.relabelling(label, self, self)
         label.add_reader(self.principal.name, self.da.principal.name)
         self.da.add_Data(self.principal.name, customer.principal.name, label)
         return True
