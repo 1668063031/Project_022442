@@ -16,14 +16,14 @@ class DataAgent:
         return False
 
     def add_Data(self, opt, name, label):
-        if label.can_read(opt):
-            label.add_reader(label.owner, label.owner)
+        if label.can_read(self.principal.name):
+            #label.add_reader(label.owner, label.owner)
             self.db[name] = DataPack(False, label)
         else:
             raise Exception(f"Principal {self.__class__} can not read label: {label}")
 
     def change_status(self, opt, name, label):
-        if label.can_read(opt):
+        if label.can_read(self.principal.name):
             self.db[name] = DataPack(not self.db[name].content, label)
             return self.db[name].content
         else:

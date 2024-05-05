@@ -5,7 +5,7 @@ from Label import Label
 
 if __name__ == '__main__':
     bob = Customer("bob")
-    da = DataAgent("da")
+
     ah = Auction_House("Auction")
     bh = Auction_House("Auction1")
 
@@ -14,18 +14,20 @@ if __name__ == '__main__':
         print(f">>Test<< Owner: {lab.owner}, Readers: {lab.readers}")
 
 
-    label = Label(bob, ah)
+    label = Label(bob, readers=[bob, ah])
+    print("---")
     test(label)
     bob.register(ah, label)
     # ah.register(bob, label)
     # test(label)
+    print("---")
     ah.switch_user_status(bob, label)
-    test(label)
-    bob.requestRef(ah, label)
-    test(label)
-    print("--")
+    print("---")
     bob.register(bh, label)
     test(label)
-    bob.commitRef(bh,label)
+    print("---")
+    bob.requestRef(ah, label)
     test(label)
-
+    print("---")
+    bob.commitRef(bh, label)
+    test(label)

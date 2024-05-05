@@ -1,8 +1,20 @@
+from DataPack import Principal
+
+
 class Label:
     def __init__(self, owner, readers):
         self.owner = owner.principal.name
-        read = [readers.principal.name]
-        self.readers = set(read)
+        if isinstance(readers, list):
+            read = []
+            for r in readers:
+                if isinstance(r, Principal):
+                    read.append(r.name)
+                else:
+                    read.append(r.principal.name)
+            self.readers = read
+        else:
+            read = [readers.principal.name]
+            self.readers = set(read)
 
     def can_read(self, principal):
         return principal == self.owner or principal in self.readers
@@ -14,7 +26,8 @@ class Label:
                 print(
                     f">>Logic<< Declassified from owner {owner} by adding reader {readers} || o: {self.owner}"
                     f" --> r: {self.readers}")
-            else: print(f">>Label<< Reader {readers} already existed inside L : {owner,readers}")
+            else:
+                print(f">>Label<< Reader {readers} already existed inside L : {owner, readers}")
             return True
         else:
             raise Exception("Only the Owners can add new readers")
